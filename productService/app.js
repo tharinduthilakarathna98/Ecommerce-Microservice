@@ -46,6 +46,9 @@ app.get("/", (req, res) => {
 });
 
 
+app.use("/products", require("./src/routes/productRouter"))
+app.use("/filter", require("./src/routes/filterRouter"))
+
 app.listen(PORT, () => {
 	logger.info(`Server is running on PORT: ${PORT}`);
 });
