@@ -1,4 +1,4 @@
-const productModel = require('../model/productModel');
+const productModel = require('../models/productModel');
 
 const categoryFilter  = async (req, res) =>{
     // console.log(req.params);
