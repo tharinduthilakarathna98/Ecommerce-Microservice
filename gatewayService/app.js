@@ -9,10 +9,12 @@ const app = express();
 dotenv.config();
 
 // Middleware
-app.use(cors({
-  origin: "http://localhost:3000",
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.set("trust proxy", 1);
 
@@ -28,18 +30,18 @@ const sessSettings = expressSession({
 app.use(sessSettings);
 
 // Proxy middleware
-app.use("/user", proxy('http://localhost:3002'));
-app.use("/product", proxy('http://localhost:3003'));
-app.use("cart", proxy('http://localhost:3004'));
-app.use("/order", proxy('http://localhost:3005'));
-app.use("/notification", proxy('http://localhost:3006'));
+app.use("/user", proxy("http://localhost:3002"));
+app.use("/product", proxy("http://localhost:3003"));
+app.use("cart", proxy("http://localhost:3004"));
+app.use("/order", proxy("http://localhost:3005"));
+app.use("/notification", proxy("http://localhost:3006"));
 
 // Sample route to check if the gateway is running
 app.get("/", (req, res) => {
   res.status(200).json({ message: "Gateway Server is running!" });
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   logger.info(`Gateway Server is running on PORT: ${PORT}`);
 });

@@ -1,0 +1,25 @@
+# deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-service
+  namespace: ctse
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-service
+  template:
+    metadata:
+      labels:
+        app: user-service
+    spec:
+      containers:
+        - name: my-app
+          image: it20607678/user-serviceprod:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3002
+      imagePullSecrets:
+        - name: regcred
