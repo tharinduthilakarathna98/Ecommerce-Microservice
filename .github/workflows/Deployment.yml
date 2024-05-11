@@ -1,4 +1,4 @@
-name:cicd pipeline
+name: cicdpipeline
 
 on:
   push:
@@ -29,7 +29,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ join(steps.meta.outputs.tags, ',') }}
           labels: |
             cartService=${{ github.repository_owner }}/cartService:${{ github.sha }}
             gatewayService=${{ github.repository_owner }}/gatewayService:${{ github.sha }}
