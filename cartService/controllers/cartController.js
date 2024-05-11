@@ -2,7 +2,7 @@ const { json } = require('express');
 const CartModel = require('../models/cartModel');
 const ProductModel = require('../models/productModel');
 
-const getCartProducts = async (req, res) => {
+const getCartProducts = async(req, res) => {
     const cartProducts = await CartModel.find({ UserId: req.user.id });
     const cartProductIds = [];
     let total = 0;
@@ -10,9 +10,9 @@ const getCartProducts = async (req, res) => {
         cartProductIds.push(cartProduct.ProductId);
     });
 
-
+    //user comment
     // console.log(cartProductIds);
-    const Products =  await ProductModel.find({ _id: { $in: cartProductIds } });
+    const Products = await ProductModel.find({ _id: { $in: cartProductIds } });
     Products.forEach(product => {
         total += product.price;
     });
@@ -20,33 +20,29 @@ const getCartProducts = async (req, res) => {
 
     // const productDetails = productArray.push(await ProductModel.findById(cartProducts[0].ProductId));
     // res.json(productDetails);
-    res.json({Products, total});
+    res.json({ Products, total });
 }
-const addCartProduct = async (req, res) => {
-    const cartProduct = await CartModel.create(
-        {
-            UserId: req.user.id,
-            ProductId: req.params.productid
-        }
-    );
+const addCartProduct = async(req, res) => {
+    const cartProduct = await CartModel.create({
+        UserId: req.user.id,
+        ProductId: req.params.productid
+    });
     res.json(cartProduct);
 }
 
-const deleteCartProduct = async (req, res) => {
-    const cartProduct = await CartModel.findOneAndDelete(
-        {
-            UserId: req.user.id,
-            ProductId: req.params.productid
-        }
-    );
-    res.json(cartProduct);  
+const deleteCartProduct = async(req, res) => {
+    const cartProduct = await CartModel.findOneAndDelete({
+        UserId: req.user.id,
+        ProductId: req.params.productid
+    });
+    res.json(cartProduct);
 }
 
-const checkout = async (req, res) => {
+const checkout = async(req, res) => {
     const cartProducts = await CartModel.deleteMany({ UserId: req.user.id });
     // console.log(cartProducts);
     let total = 0;
-    res.json({cartProducts});
+    res.json({ cartProducts });
 
 }
 
