@@ -13,9 +13,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/cart", require("./routes/cartRouter"));
 
 app.get("/", (req, res) => {
-  res.send("Welcome to the cart API");
+    res.send("Welcome to the cart API ......");
 });
 
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+    console.log(`Server running on port ${port}`);
 });
