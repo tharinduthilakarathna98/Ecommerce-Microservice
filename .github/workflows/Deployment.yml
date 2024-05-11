@@ -24,25 +24,26 @@ jobs:
         with:
           context: productService/
           push: true
-          tags: IT20607678/productservice:latest
+          tags: IT20607678/productService:latest
 
       - name: Build and push Docker image cart service
         uses: docker/build-push-action@v4
         with:
           context: cartService/
           push: true
-          tags: IT20607678/cartservice:latest
+          tags: IT20607678/cartService:latest
 
       - name: Build and push Docker image user service
         uses: docker/build-push-action@v4
         with:
           context: userService/
           push: true
-          tags: IT20607678/userservice:latest
+          tags: IT20607678/userService:latest
 
       - name: Build and push Docker image order service
         uses: docker/build-push-action@v4
         with:
           context: orderService/
           push: true
-          tags: IT20607678/orderservice:latest
+          tags: IT20607678/orderService:latest
+
