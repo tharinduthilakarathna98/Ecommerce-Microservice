@@ -1,21 +1,18 @@
 const mongoose = require("mongoose");
 
-const cartSchema = mongoose.Schema(
-{
-    UserId: 
-    {
-        type: String 
+const cartSchema = mongoose.Schema({
+        UserId: { //add comment
+            type: String
+        },
+
+        ProductId: {
+            type: String
+        }
     },
 
-    ProductId: 
     {
-        type: String 
+        timestamps: true
     }
-}, 
-
-{
-    timestamps: true
-}
 
 );
 
